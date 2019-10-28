@@ -2,7 +2,7 @@
 
 #Purge Open CV Old
 
-sudo apt-get purge libopencv*
+sudo apt-get purge libopencv* -y
 
 
 #Before installing on Nano need to increase memory. Can use swapfile to virtually increase.
