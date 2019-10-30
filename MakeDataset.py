@@ -36,22 +36,22 @@ cam.release()
 cv2.destroyAllWindows()
 '''
 list = os.listdir('./pre-dataset') # dir is your directory path
-number_files = len(list)
+number_files = len(list) - 1
 print(number_files)
 count = number_files
 #ret, img = cam.read()
 
-while(True):
-
-    ret, img = cv2.imread('./pre-dataset')
-    img = cv2.flip(img, 1) # flip video image vertically
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_detector.detectMultiScale(gray, 1.3, 5)
-    for (x,y,w,h) in faces:
-        cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)     
-        count += 1
-        # Save the captured image into the datasets folder
-        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
-        cv2.imshow('image', img)
-        if count == 3:
+for x in os.listdir('./pre-dataset'):
+    if x is not '.gitKeep':
+        ret, img = cv2.imread('./pre-dataset')
+        img = cv2.flip(img, 1) # flip video image vertically
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        faces = face_detector.detectMultiScale(gray, 1.3, 5)
+        for (x,y,w,h) in faces:
+            cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)     
+            count += 1
+            # Save the captured image into the datasets folder
+            cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
+            cv2.imshow('image', img)
+        if count == 4:
             break
