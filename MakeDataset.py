@@ -43,7 +43,7 @@ count = number_files
 
 for x in os.listdir('./pre-dataset'):
     if x is not '.gitKeep':
-        ret, img = cv2.imread('./pre-dataset')
+        ret, img = cv2.imread('./pre-dataset/'+x)
         img = cv2.flip(img, 1) # flip video image vertically
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         faces = face_detector.detectMultiScale(gray, 1.3, 5)
