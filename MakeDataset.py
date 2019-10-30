@@ -38,7 +38,7 @@ cv2.destroyAllWindows()
 list = os.listdir('./pre-dataset') # dir is your directory path
 number_files = len(list) - 1
 print(number_files)
-count = number_files
+count = 0
 #ret, img = cam.read()
 
 for x in os.listdir('./pre-dataset'):
@@ -55,7 +55,7 @@ for x in os.listdir('./pre-dataset'):
                 # Save the captured image into the datasets folder
                 cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
                 cv2.imshow('image', img)
-            if count == 4:
+            if count == 10:
                 break
         except:
             pass
