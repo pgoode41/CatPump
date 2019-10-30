@@ -2,7 +2,7 @@
 import cv2
 import os
 
-cam = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM),width=1280, height=720, framerate=21/1, format=NV12 ! nvvidconv flip-method=2 ! video/x-raw,width=960, height=616 format=BGRx ! videoconvert ! appsink' , cv2.CAP_GSTREAMER)
+#cam = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM),width=1280, height=720, framerate=21/1, format=NV12 ! nvvidconv flip-method=2 ! video/x-raw,width=960, height=616 format=BGRx ! videoconvert ! appsink' , cv2.CAP_GSTREAMER)
 
 
 face_detector = cv2.CascadeClassifier('/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml')
@@ -10,9 +10,12 @@ face_detector = cv2.CascadeClassifier('/usr/local/share/opencv4/haarcascades/haa
 face_id = input('\n enter user id end press <return> ==>  ')
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 # Initialize individual sampling face count
-count = 0
+
+'''
 while(True):
-    ret, img = cam.read()
+    
+    #ret, img = cam.read()
+    ret, img = cv2.imread('./pre-dataset')
     img = cv2.flip(img, 1) # flip video image vertically
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray, 1.3, 5)
@@ -31,3 +34,24 @@ while(True):
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
+'''
+list = os.listdir('./pre-dataset') # dir is your directory path
+number_files = len(list)
+print(number_files)
+count = number_files
+#ret, img = cam.read()
+
+while(True):
+
+    ret, img = cv2.imread('./pre-dataset')
+    img = cv2.flip(img, 1) # flip video image vertically
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = face_detector.detectMultiScale(gray, 1.3, 5)
+    for (x,y,w,h) in faces:
+        cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)     
+        count += 1
+        # Save the captured image into the datasets folder
+        cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
+        cv2.imshow('image', img)
+        if count == 3:
+            break
