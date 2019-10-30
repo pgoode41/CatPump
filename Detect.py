@@ -43,7 +43,7 @@ while True:
 		id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
 		#Looks for a specific person
 		# Check if confidence is less them 100 ==> "0" is perfect match 
-		if (confidence < 40):
+		if (confidence < 50):
 			id = "The Realest Nigga You Know"
 			confidence = "  {0}%".format(round(100 - confidence))
 			
