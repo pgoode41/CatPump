@@ -20,9 +20,12 @@ def hello():
 #####################################################################################
 @app.route('/api/v1/data/upload', methods=['GET', 'POST'])
 def Model_Save():
-    os.remove('./dataset/.getKeep')
-    os.remove('./pre-dataset/.getKeep')
-    os.remove('./trainer/.getKeep')
+    try:
+        os.remove('./dataset/.gitKeep')
+        os.remove('./pre-dataset/.gitKeep')
+        os.remove('./trainer/.gitKeep')
+    except:
+        pass
     files = request.files
     picCounter = 0
     for x in files:
