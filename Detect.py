@@ -44,7 +44,7 @@ while True:
 		#Looks for a specific person
 		# Check if confidence is less them 100 ==> "0" is perfect match 
 		if (confidence < 40):
-			id = names[id]
+			id = "The Realest Nigga You Know"
 			confidence = "  {0}%".format(round(100 - confidence))
 			
 		
