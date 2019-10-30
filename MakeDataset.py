@@ -45,6 +45,7 @@ for x in os.listdir('./pre-dataset'):
     if x is not '.gitKeep':
         try:
             pic = cv2.imread('./pre-dataset/'+x)
+            print(x)
             img = cv2.flip(pic, 1) # flip video image vertically
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             faces = face_detector.detectMultiScale(gray, 1.3, 5)
