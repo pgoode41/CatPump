@@ -1,34 +1,66 @@
-# import the necessary packages
-import argparse
+import time
+import sys
 import cv2
- 
-# construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-	help="path to the input image")
-ap.add_argument("-c", "--cascade",
-	default="haarcascade_frontalcatface.xml",
-	help="path to cat detector haar cascade")
-args = vars(ap.parse_args())
+import numpy as np
+import os 
 
-	
-# load the input image and convert it to grayscale
-image = cv2.imread(args["image"])
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
- 
-# load the cat detector Haar cascade, then detect cat faces
-# in the input image
-detector = cv2.CascadeClassifier(args["cascade"])
-rects = detector.detectMultiScale(gray, scaleFactor=1.3,
-	minNeighbors=10, minSize=(75, 75))
 
+print ("OpenCV "+cv2.__version__)
+
+recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer.read('trainer/trainer.yml')
+cascadePath = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalcatface.xml"
+faceCascade = cv2.CascadeClassifier(cascadePath);
+font = cv2.FONT_HERSHEY_SIMPLEX
+#id counter
+id = 0
+# names related to ids: example ==> yourname: id=1,  etc
+names = ['None', 'Botmation'] 
+# Initialize and start realtime video capture
+
+cam = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM),width=1280, height=720, framerate=21/1, format=NV12 ! nvvidconv flip-method=2 ! video/x-raw,width=960, height=616 format=BGRx ! videoconvert ! appsink' , cv2.CAP_GSTREAMER)
+
+# Define min window size to be recognized as a face
+minW = 0.1*cam.get(3)
+minH = 0.1*cam.get(4)
+
+
+
+while True:
 	
-# loop over the cat faces and draw a rectangle surrounding each
-for (i, (x, y, w, h)) in enumerate(rects):
-	cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
-	cv2.putText(image, "Cat #{}".format(i + 1), (x, y - 10),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2)
- 
-# show the detected cat faces
-cv2.imshow("Cat Faces", image)
-cv2.waitKey(0)
+	ret, img =cam.read()
+	img = cv2.flip(img, 1) # Flip vertically
+	gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
+	faces = faceCascade.detectMultiScale( 
+		gray,
+		scaleFactor = 1.2,
+		minNeighbors = 5,
+		minSize = (int(minW), int(minH)),
+	       )
+	for(x,y,w,h) in faces:
+		cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
+		id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
+		#Looks for a specific person
+		# Check if confidence is less them 100 ==> "0" is perfect match 
+		if (confidence < 50):
+			id = "The Realest Nigga You Know"
+			confidence = "  {0}%".format(round(100 - confidence))
+			
+		
+		else:
+			id = "unknown"
+			confidence = "  {0}%".format(round(100 - confidence))
+	
+		cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
+		cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)  
+			
+	cv2.imshow('camera',img) 
+    
+	k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
+	if k == 27:
+        	break
+# Do a bit of cleanup
+print("\n [INFO] Exiting Program and cleanup stuff")
+cam.release()
+cv2.destroyAllWindows()
