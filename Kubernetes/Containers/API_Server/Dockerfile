@@ -18,6 +18,7 @@ RUN mkdir ${projectDir}
 
 
 ENV CATPUMPDIR=${projectDir}
+ENV DEBIAN_FRONTEND=noninteractive
 
 ADD CodeStore /CodeStore
 
