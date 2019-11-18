@@ -9,6 +9,8 @@ ENV var=${var}
 RUN apt update -y
 RUN apt upgrade -y
 RUN apt install python3-pip -y
+RUN apt install wget -y
+RUN apt install unzip -y
 RUN pip3 install numpy
 RUN pip3 install Flask
 RUN pip3 install requests
@@ -27,6 +29,6 @@ RUN chmod +x ${projectDir}installOpenCV4.sh
 RUN chmod +x ${projectDir}kickstart.sh
 
 RUN ${projectDir}installOpenCV4.sh
-RUN cd /CodeStore
+RUN cd ${projectDir}
 
 CMD [ "./kickstart.sh" ]
