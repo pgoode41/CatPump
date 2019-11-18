@@ -11,6 +11,7 @@ RUN apt upgrade -y
 RUN apt install python3-pip -y
 RUN pip3 install numpy
 RUN pip3 install Flask
+RUN pip3 install requests
 
 
 
@@ -28,4 +29,4 @@ RUN chmod +x /CodeStore/kickstart.sh
 RUN /CodeStore/installOpenCV4.sh
 RUN cd /CodeStore
 
-CMD [ "sudo ./kickstart.sh $CATPUMPDIR" ]
+CMD [ "sudo ./kickstart.sh" ]

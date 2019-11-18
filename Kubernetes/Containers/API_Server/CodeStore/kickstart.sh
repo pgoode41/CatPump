@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd $1
+cd ${CATPUMPDIR}
 
 python3 apiserver.py
