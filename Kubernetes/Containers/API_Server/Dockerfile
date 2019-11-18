@@ -21,12 +21,12 @@ RUN mkdir ${projectDir}
 ENV CATPUMPDIR=${projectDir}
 ENV DEBIAN_FRONTEND=noninteractive
 
-ADD CodeStore /${projectDir}
+ADD CodeStore ${projectDir}
 
-RUN chmod +x /${projectDir}installOpenCV4.sh
-RUN chmod +x /${projectDir}kickstart.sh
+RUN chmod +x ${projectDir}installOpenCV4.sh
+RUN chmod +x ${projectDir}kickstart.sh
 
-RUN /${projectDir}installOpenCV4.sh
+RUN ${projectDir}installOpenCV4.sh
 RUN cd /CodeStore
 
 CMD [ "./kickstart.sh" ]
