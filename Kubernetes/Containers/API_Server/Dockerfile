@@ -28,4 +28,4 @@ RUN chmod +x /CodeStore/kickstart.sh
 RUN /CodeStore/installOpenCV4.sh
 RUN cd /CodeStore
 
-CMD [ "./kickstart.sh $CATPUMPDIR" ]
+CMD [ "sudo ./kickstart.sh $CATPUMPDIR" ]
