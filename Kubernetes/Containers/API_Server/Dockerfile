@@ -31,4 +31,4 @@ RUN chmod +x ${projectDir}kickstart.sh
 RUN ${projectDir}installOpenCV4.sh
 RUN cd ${projectDir}
 
-CMD [ "${projectDir}kickstart.sh"]
+CMD [ "/opt/CatPump/kickstart.sh"]
