@@ -2,4 +2,4 @@
 
 cd ${CATPUMPDIR}
 
-python3 apiserver.py
+python3 apiServer.py
