@@ -2,12 +2,16 @@ import os
 import sys
 import base64
 import requests
+import TrainFaceCat
+import DetectFaceCat
+import MakeDatasetCat
 from flask import Flask
 from flask import request
 from pprint import pprint
 from flask import render_template
 
-from flask import Flask
+
+
 app = Flask(__name__)
 
 projectDir = os.environ.get('CATPUMPDIR')
@@ -36,6 +40,9 @@ def Model_Save():
         file = request.files[x]
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],'cat-pic-'+str(picCounter)+'.jpg'))
         picCounter += 1
+    MakeDatasetCat.MakeDataset_Cat(projectDir)
+    TrainFaceCat.TrainModle_Cat(projectDir)
+    DetectFaceCat.DetectFace_Cat(projectDir)
 
     return "Return Message From /api/v1/data/upload."
 #####################################################################################
