@@ -24,6 +24,8 @@ ENV CATPUMPDIR=${projectDir}
 ENV DEBIAN_FRONTEND=noninteractive
 
 ADD CodeStore ${projectDir}
+RUN mkdir ${projectDir}pre-dataset
+RUN mkdir ${projectDir}dataset
 
 RUN chmod +x ${projectDir}installOpenCV4.sh
 RUN chmod +x ${projectDir}kickstart.sh
