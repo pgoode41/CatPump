@@ -7,8 +7,9 @@ def MakeDataset_Cat(projectDir):
     os.chdir(projectDir)
     face_detector = cv2.CascadeClassifier('/usr/local/share/opencv4/haarcascades/haarcascade_frontalcatface.xml')
     # For each person, enter one numeric face id
-    face_id = input('\n enter user id end press <return> ==>  ')
+    #face_id = input('\n enter user id end press <return> ==>  ')
     print("\n [INFO] Initializing face capture. Look the camera and wait ...")
+    face_id = 1
 
     list = os.listdir('./pre-dataset') # dir is your directory path
     number_files = len(list) - 1
