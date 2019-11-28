@@ -52,9 +52,9 @@ def Model_Save():
 @app.route('/api/v1/pump', methods=['GET', 'POST'])
 def RunPump():
     #PumpControl()
-    req = request.json()
-    pprint(req)
-    reqDict = json.loads(req)
+    reqDict = request.form.to_dict()
+    pprint(reqDict)
+    #reqDict = json.loads(req)
     return PumpControl.Run_Pump(reqDict)
 #####################################################################################
 #####################################################################################
