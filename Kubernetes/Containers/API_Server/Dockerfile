@@ -14,6 +14,7 @@ RUN apt install unzip -y
 RUN pip3 install numpy
 RUN pip3 install Flask
 RUN pip3 install requests
+RUN pip3 install Jetson.GPIO
 
 
 

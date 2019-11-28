@@ -1,7 +1,9 @@
 import os
 import sys
+import json
 import base64
 import requests
+import PumpControl
 import TrainFaceCat
 import DetectFaceCat
 import MakeDatasetCat
@@ -47,6 +49,17 @@ def Model_Save():
     return "Return Message From /api/v1/data/upload."
 #####################################################################################
 #####################################################################################
+@app.route('/api/v1/pump', methods=['GET', 'POST'])
+def RunPump():
+    #PumpControl()
+    req = request.json()
+    pprint(req)
+    reqDict = json.loads(req)
+    return PumpControl.Run_Pump(reqDict)
+#####################################################################################
+#####################################################################################
+
+
 #############################################################
 #####################################################################################
 if __name__ == '__main__':
