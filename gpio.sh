@@ -53,3 +53,6 @@ echo 0 > /sys/class/gpio/gpio16/value
 echo 16 > /sys/class/gpio/unexport
 # Query Status
 #cat /sys/kernel/debug/gpio
+
+
+# sudo nvidia-docker run --rm -ti -p 8085:8085 --privileged  pgoode41/catpump-api 
