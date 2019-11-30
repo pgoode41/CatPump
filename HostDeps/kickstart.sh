@@ -5,6 +5,7 @@ depsDir='/home/preston/CatPump/HostDeps'
 apt install python3-pip -y
 apt install nano -y
 apt install curl -y
+apt install tmux -y
 
 pip3 install Jetson.GPIO
 

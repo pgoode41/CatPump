@@ -9,8 +9,8 @@ import time
 ##########################################################################
 ##########################################################################
 def Run_Pump(dataDict):
-    gpioPin = dataDict['gpio_pin_number']
-    pumpDuration = dataDict['pump_run_duration']
+    gpioPin = int(dataDict['gpio_pin_number'])
+    pumpDuration = int(dataDict['pump_run_duration'])
     
     GPIO.setwarnings(False)
 

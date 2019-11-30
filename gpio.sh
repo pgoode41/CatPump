@@ -55,4 +55,4 @@ echo 16 > /sys/class/gpio/unexport
 #cat /sys/kernel/debug/gpio
 
 
-# sudo nvidia-docker run --rm -ti -p 8085:8085 --privileged  pgoode41/catpump-api 
+# sudo nvidia-docker run --rm -ti -p 8085:8085 --privileged  pgoode41/catpump-api bash
