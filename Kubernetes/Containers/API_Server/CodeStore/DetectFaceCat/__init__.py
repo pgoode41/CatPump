@@ -3,9 +3,18 @@ import sys
 import cv2
 import numpy as np
 import os 
+import PumpControl
+#########################################################################################
+#########################################################################################
+  
+pumpRunData = {
+    "gpio_pin_number": 21,
+    "pump_run_duration": 15,
+}
 
 
-
+#########################################################################################
+#########################################################################################
 def DetectFace_Cat(projectDir):
     os.chdir(projectDir)
     print ("OpenCV "+cv2.__version__)
@@ -47,8 +56,9 @@ def DetectFace_Cat(projectDir):
             #Looks for a specific person
             # Check if confidence is less them 100 ==> "0" is perfect match 
             if (confidence < 50):
-                id = "The Realest Nigga You Know"
+                id = "CAT"
                 confidence = "  {0}%".format(round(100 - confidence))
+                PumpControl.Run_Pump(pumpRunData)                
                 
             
             else:
