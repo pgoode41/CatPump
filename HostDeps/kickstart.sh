@@ -2,6 +2,10 @@
 
 depsDir='/home/preston/CatPump/HostDeps'
 
+#Set 10Watt(full power)
+#Barrel Power only
+sudo nvpmodel -m 0
+
 apt install python3-pip -y
 apt install nano -y
 apt install curl -y

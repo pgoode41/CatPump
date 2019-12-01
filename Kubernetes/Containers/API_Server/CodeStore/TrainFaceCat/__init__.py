@@ -6,7 +6,7 @@ import os
 def TrainModle_Cat(projectDir):
     os.chdir(projectDir)
     # Path for face image database
-    path = 'dataset'
+    path = './dataset'
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     detector = cv2.CascadeClassifier("/usr/local/share/opencv4/haarcascades/haarcascade_frontalcatface.xml");
     # function to get the images and label data

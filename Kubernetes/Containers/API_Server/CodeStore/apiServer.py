@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 projectDir = os.environ.get('CATPUMPDIR')
 os.chdir(projectDir)
-UPLOAD_FOLDER = projectDir+'pre-dataset' 
+UPLOAD_FOLDER = projectDir+'./pre-dataset' 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 #####################################################################################
 #####################################################################################
@@ -64,5 +64,3 @@ def RunPump():
 #####################################################################################
 if __name__ == '__main__':
     app.run('0.0.0.0', "8085", debug=True)
-
-
