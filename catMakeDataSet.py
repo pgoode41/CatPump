@@ -31,5 +31,4 @@ for x in os.listdir('./pre-dataset'):
                 cv2.imshow('image', img)
             if count >= 20:
                 break
-        except:
             pass

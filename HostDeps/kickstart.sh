@@ -5,6 +5,7 @@ depsDir='/home/preston/CatPump/HostDeps'
 #Set 10Watt(full power)
 #Barrel Power only
 sudo nvpmodel -m 0
+/usr/local/bin/k3s-killall.sh
 
 apt install python3-pip -y
 apt install nano -y
@@ -12,6 +13,8 @@ apt install curl -y
 apt install tmux -y
 
 pip3 install Jetson.GPIO
+pip3 install flask
+pip3 install pillow
 
 chmod +x "${depsDir}/jetsonSDRezise.sh"
 #chmod +x "${depsDir}/K3s.sh"
@@ -22,3 +25,4 @@ chmod +x "${depsDir}/installOpenCV4.sh"
 #"${depsDir}/K3s.sh"
 "${depsDir}/swapspace.sh"
 "${depsDir}/installOpenCV4.sh"
+/usr/local/bin/k3s-killall.sh
