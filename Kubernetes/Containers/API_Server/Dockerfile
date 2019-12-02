@@ -15,7 +15,7 @@ RUN apt install nano -y
 RUN pip3 install numpy
 RUN pip3 install Flask
 RUN pip3 install requests
-RUN pip3 install Jetson.GPIOC
+RUN pip3 install Jetson.GPIO
 
 
 

@@ -26,3 +26,5 @@ chmod +x "${depsDir}/installOpenCV4.sh"
 "${depsDir}/swapspace.sh"
 "${depsDir}/installOpenCV4.sh"
 /usr/local/bin/k3s-killall.sh
+
+#sudo nvidia-docker build API_Server -t pgoode41/catpump-api && sudo nvidia-docker push pgoode41/catpump-api && sudo nvidia-docker pull pgoode41/catpump-api && sudo nvidia-docker run --rm -ti -p 8085:8085 --privileged  pgoode41/catpump-api
