@@ -5,6 +5,7 @@ depsDir='/home/preston/CatPump/HostDeps'
 #Set 10Watt(full power)
 #Barrel Power only
 sudo nvpmodel -m 0
+udo apt-get purge libopencv* -y
 /usr/local/bin/k3s-killall.sh
 
 apt install python3-pip -y
@@ -16,6 +17,7 @@ pip3 install Jetson.GPIO
 pip3 install flask
 pip3 install pillow
 
+sudo fallocate -l 4.0G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
 chmod +x "${depsDir}/jetsonSDRezise.sh"
 #chmod +x "${depsDir}/K3s.sh"
 chmod +x "${depsDir}/swapspace.sh"

@@ -21,8 +21,8 @@ def DetectFace_Cat(projectDir):
 
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     recognizer.read('trainer/trainer.yml')
-    cascadePath = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalcatface.xml"
-    faceCascade = cv2.CascadeClassifier(cascadePath);
+
+    faceCascade = cv2.CascadeClassifier("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml")
     font = cv2.FONT_HERSHEY_SIMPLEX
     #id counter
     id = 0
@@ -58,21 +58,23 @@ def DetectFace_Cat(projectDir):
             if (confidence < 50):
                 id = "CAT"
                 confidence = "  {0}%".format(round(100 - confidence))
+                print('cat detected!')
                 PumpControl.Run_Pump(pumpRunData)                
                 
             
             else:
                 id = "unknown"
+                print('unknown face detected')
                 confidence = "  {0}%".format(round(100 - confidence))
         
             cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
             cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)  
                 
-        cv2.imshow('camera',img) 
+        #cv2.imshow('camera',img) 
         
-        k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
-        if k == 27:
-                break
+        #k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
+        #if k == 27:
+        #        break
     # Do a bit of cleanup
     #print("\n [INFO] Exiting Program and cleanup stuff")
     #cam.release()

@@ -18,7 +18,8 @@ count = 0
 for x in os.listdir('./pre-dataset'):
     if x is not '.gitKeep':
         try:
-            pic = cv2.imread('./pre-dataset/'+x)
+            pic = cv2.imread('pre-dataset/'+x)
+            print(pic)
             print(x)
             img = cv2.flip(pic, 1) # flip video image vertically
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

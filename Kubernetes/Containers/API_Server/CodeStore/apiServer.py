@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import glob
 import base64
 import requests
 import PumpControl
@@ -40,8 +41,9 @@ def Model_Save():
     for x in files:
         print(x)
         file = request.files[x]
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'],'cat-pic-'+str(picCounter)+'.jpg'))
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'],'cat-pic-'+str(picCounter)+'.jpeg'))
         picCounter += 1
+
     MakeDatasetCat.MakeDataset_Cat(projectDir)
     TrainFaceCat.TrainModle_Cat(projectDir)
     DetectFaceCat.DetectFace_Cat(projectDir)
