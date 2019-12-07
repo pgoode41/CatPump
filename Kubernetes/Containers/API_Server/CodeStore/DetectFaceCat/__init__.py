@@ -17,12 +17,14 @@ pumpRunData = {
 #########################################################################################
 def DetectFace_Cat(projectDir):
     os.chdir(projectDir)
+
+
     print ("OpenCV "+cv2.__version__)
 
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     recognizer.read('trainer/trainer.yml')
-
-    faceCascade = cv2.CascadeClassifier("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml")
+    cascadePath = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
+    faceCascade = cv2.CascadeClassifier(cascadePath);
     font = cv2.FONT_HERSHEY_SIMPLEX
     #id counter
     id = 0
@@ -36,10 +38,10 @@ def DetectFace_Cat(projectDir):
     minW = 0.1*cam.get(3)
     minH = 0.1*cam.get(4)
 
-
+    print('Detect')
 
     while True:
-        
+        print('loop')
         ret, img =cam.read()
         img = cv2.flip(img, 1) # Flip vertically
         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -51,20 +53,20 @@ def DetectFace_Cat(projectDir):
             minSize = (int(minW), int(minH)),
             )
         for(x,y,w,h) in faces:
+            print('Detect for')
             cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
             id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
             #Looks for a specific person
             # Check if confidence is less them 100 ==> "0" is perfect match 
-            if (confidence < 50):
-                id = "CAT"
+            if (confidence < 40):
+                print('person')
+                id = names[id]
                 confidence = "  {0}%".format(round(100 - confidence))
-                print('cat detected!')
-                PumpControl.Run_Pump(pumpRunData)                
                 
             
             else:
                 id = "unknown"
-                print('unknown face detected')
+                print(id)
                 confidence = "  {0}%".format(round(100 - confidence))
         
             cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
@@ -75,7 +77,3 @@ def DetectFace_Cat(projectDir):
         #k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
         #if k == 27:
         #        break
-    # Do a bit of cleanup
-    #print("\n [INFO] Exiting Program and cleanup stuff")
-    #cam.release()
-    #cv2.destroyAllWindows()
