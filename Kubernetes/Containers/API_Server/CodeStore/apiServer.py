@@ -44,6 +44,15 @@ def Model_Save():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],'cat-pic-'+str(picCounter)+'.jpeg'))
         picCounter += 1
 
+    #Prime pump
+    pumpPrimeData = {
+        "gpio_pin_number": 21,
+        "pump_run_duration": 10
+    }
+    print("Priming Pump")
+    PumpControl.Run_Pump(pumpPrimeData)
+    print('Pump has been primed.')
+
     MakeDatasetCat.MakeDataset_Cat(projectDir)
     TrainFaceCat.TrainModle_Cat(projectDir)
     DetectFaceCat.DetectFace_Cat(projectDir)

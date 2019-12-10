@@ -40,12 +40,13 @@ def DetectFace_Cat(projectDir):
 
     print('Detect')
     pumpDefaultData = {
-        "gpio_pin_number": 12,
-        "pump_run_duration": 10,
+        "gpio_pin_number": 21,
+        "pump_run_duration": 10
     }
 
 
     while True:
+        time.sleep(1)
         print('loop')
         ret, img =cam.read()
         img = cv2.flip(img, 1) # Flip vertically
