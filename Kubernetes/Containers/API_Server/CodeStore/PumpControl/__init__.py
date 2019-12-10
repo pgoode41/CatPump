@@ -17,7 +17,7 @@ def Run_Pump(dataDict):
     if pumpDuration is "default":
         pumpDuration = 5
 
-    for _ in range(2):
+    for _ in range(1):
         #Sets GPIO gpioPins by board location number.
         GPIO.setmode(GPIO.BOARD)
 
