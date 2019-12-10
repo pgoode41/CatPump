@@ -65,7 +65,7 @@ def DetectFace_Cat(projectDir):
             id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
             #Looks for a specific person
             # Check if confidence is less them 100 ==> "0" is perfect match 
-            if (confidence > 60):
+            if (confidence > 40):
                 print('person')
                 id = names[id]
                 confidence = "  {0}%".format(round(100 - confidence))

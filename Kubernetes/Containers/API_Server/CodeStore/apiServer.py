@@ -51,6 +51,8 @@ def Model_Save():
     }
     print("Priming Pump")
     PumpControl.Run_Pump(pumpPrimeData)
+    PumpControl.Run_Pump(pumpPrimeData)
+    PumpControl.Run_Pump(pumpPrimeData)
     print('Pump has been primed.')
 
     MakeDatasetCat.MakeDataset_Cat(projectDir)
