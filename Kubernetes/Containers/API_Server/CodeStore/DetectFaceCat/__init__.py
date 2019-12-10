@@ -33,7 +33,7 @@ def DetectFace_Cat(projectDir):
     # Initialize and start realtime video capture
 
     #cam = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM),width=1280, height=720, framerate=21/1, format=NV12 ! nvvidconv flip-method=2 ! video/x-raw,width=960, height=616 format=BGRx ! videoconvert ! appsink' , cv2.CAP_GSTREAMER)
-    cam = cv2.VideoCapture(1)
+    cam = cv2.VideoCapture(0)
     # Define min window size to be recognized as a face
     minW = 0.1*cam.get(3)
     minH = 0.1*cam.get(4)
