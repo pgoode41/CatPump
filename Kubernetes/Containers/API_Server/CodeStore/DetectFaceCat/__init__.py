@@ -39,6 +39,11 @@ def DetectFace_Cat(projectDir):
     minH = 0.1*cam.get(4)
 
     print('Detect')
+    pumpDefaultData = {
+        "gpio_pin_number": 12,
+        "pump_run_duration": 10,
+    }
+
 
     while True:
         print('loop')
@@ -62,7 +67,7 @@ def DetectFace_Cat(projectDir):
                 print('person')
                 id = names[id]
                 confidence = "  {0}%".format(round(100 - confidence))
-                
+                PumpControl.Run_Pump(pumpDefaultData)
             
             else:
                 id = "unknown"
