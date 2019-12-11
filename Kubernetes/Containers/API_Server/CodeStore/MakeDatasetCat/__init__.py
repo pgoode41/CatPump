@@ -7,7 +7,7 @@ import numpy as np
 
 def MakeDataset_Cat(projectDir):
     #face_detector = cv2.CascadeClassifier("/usr/local/share/opencv4/haarcascades/haarcascade_frontalcatface_extended.xml")
-    face_detector = cv2.CascadeClassifier("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml")
+    face_detector = cv2.CascadeClassifier("/usr/local/share/opencv4/haarcascades/haarcascade_frontalcatface_extended.xml")
     #face_detector = cv2.CascadeClassifier('haarcascade_frontalcatface_extended.xml"')
     # For each person, enter one numeric face id
     face_id = 1
