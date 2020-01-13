@@ -37,7 +37,7 @@ RUN cd ${projectDir}
 
 CMD [ "/opt/CatPump/kickstart.sh"]
 
-#sudo docker pull pgoode41/catpump-ai-detector
-#sudo docker build  Ai_Detector pgoode41/catpump-ai-detector
-#sudo docker push pgoode41/catpump-ai-detector
-#sudo docker run -ti --rm --privileged -p 8095:8095 pgoode41/catpump-ai-detector
+sudo docker pull pgoode41/catpump-ai-detector
+sudo docker build  Ai_Detector pgoode41/catpump-ai-detector
+sudo docker push pgoode41/catpump-ai-detector
+sudo docker run -ti --rm --privileged -p 8095:8095 pgoode41/catpump-ai-detector
