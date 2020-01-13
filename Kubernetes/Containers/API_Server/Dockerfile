@@ -12,6 +12,7 @@ RUN apt install python3-pip -y
 RUN apt install wget -y
 RUN apt install unzip -y
 RUN apt install nano -y
+RUN pip3 install --upgrade pip
 RUN pip3 install numpy
 RUN pip3 install Flask
 RUN pip3 install requests
@@ -38,6 +39,6 @@ RUN cd ${projectDir}
 CMD [ "/opt/CatPump/kickstart.sh"]
 
 #sudo docker pull pgoode41/catpump-ai-detector
-#sudo docker build  Ai_Detector pgoode41/catpump-ai-detector
+#sudo docker build  Ai_Detector -t pgoode41/catpump-ai-detector
 #sudo docker push pgoode41/catpump-ai-detector
 #sudo docker run -ti --rm --privileged -p 8095:8095 pgoode41/catpump-ai-detector
