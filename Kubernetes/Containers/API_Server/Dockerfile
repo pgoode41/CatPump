@@ -42,3 +42,5 @@ CMD [ "/opt/CatPump/kickstart.sh"]
 #sudo docker build  Ai_Detector -t pgoode41/catpump-ai-detector
 #sudo docker push pgoode41/catpump-ai-detector
 #sudo docker run -ti --rm --privileged -p 8095:8095 pgoode41/catpump-ai-detector
+
+#sudo docker build  API_Server -t pgoode41/catpump-api && sudo docker push pgoode41/catpump-api && sudo nvidia-docker run -ti --rm -p 8085:8085 --privileged pgoode41/catpump-api
