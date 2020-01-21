@@ -1,59 +1,82 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: go-webserver1
+  apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: catpump-api
+  #---
+  #apiVersion: v1
+  #kind: ConfigMap
+  #metadata:
+  #  namespace: catpump-api
+  #  name: config
+  #data:
+  #  config: |
+  #    address-pools:
+  #    - name: my-ip-space
+  #      protocol: layer2
+  #      addresses:
+  #      - 192.168.1.170/32
+  #      - 192.168.1.247/32
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: go-webserver1
-  name: config
-data:
-  config: |
-    address-pools:
-    - name: my-ip-space
-      protocol: layer2
-      addresses:
-      - 192.168.1.170/32
-      - 192.168.1.247/32
----
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-webserver1
-  namespace: go-webserver1
+  name: catpump-api-deployment
+  namespace: catpump-api
 spec:
   selector:
     matchLabels:
-      app: go-webserver1
+      app: catpump-api
   template:
     metadata:
       labels:
-        app: go-webserver1
+        app: catpump-api
     spec:
       containers:
-      - name: go-webserver1
-        image: pgoode41/go-webserver1-basic
+        #privileged: true
+      - name: catpump-api-container
+        securityContext:  
+          privileged: true
+        image: pgoode41/catpump-api:latest
+        #image: DOCKER_USER/PRIVATE_REPO_NAME:latest
+        imagePullPolicy: Always
+        #command: [ "echo", "SUCCESS" ]
         ports:
         - name: http
-          containerPort: 80
+          containerPort: 8085
+      imagePullSecrets:
+        - name: myregistrykey
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: catpump-api
+#  namespace: catpump-api
+#spec:
+#  ports:
+#  - name: http
+#    port: 80
+#    protocol: TCP
+#    targetPort: 80
+#  selector:
+#    app: catpump-api
+#  type: LoadBalancer
 
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: go-webserver1
-  namespace: go-webserver1
+  name: catpump-api-lb
+  namespace: catpump-api
 spec:
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 80
-  selector:
-    app: go-webserver1
   type: LoadBalancer
+  selector:
+    app: catpump-api
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8085
+      targetPort: 8085
 
 
 
@@ -61,8 +84,25 @@ spec:
 
 
 
+#DOCKER_REGISTRY_SERVER="docker.io"
+#DOCKER_USER="pgoode41"
+#DOCKER_EMAIL="pgoode41@gmail.com"
+#DOCKER_PASSWORD="H@yley41"
+
+#sudo kubectl -n catpump-api create secret docker-registry myregistrykey \
+#  --docker-server=$DOCKER_REGISTRY_SERVER \
+#  --docker-username=$DOCKER_USER \
+#  --docker-password=$DOCKER_PASSWORD \
+#  --docker-email=$DOCKER_EMAIL
 
 
+#sudo docker run -ti --rm -p 80:80 pgoode41/catpump-api-basic bash
+#sudo docker run -ti --rm -p 8085:8085 pgoode41/catpump-api lspci
+#pip3 install pytorch
+#import torch
+#torch.cuda.current_device()
+#k3sToken=$(sudo cat /var/lib/rancher/k3s/server/node-token)
+#Server_Addr='192.168.1.46'
+#curl -sfL https://get.k3s.io | K3S_URL=https://${Server_Addr}:6443 K3S_TOKEN=${k3sToken} sh -
 
-
-#sudo docker run -ti --rm -p 80:80 pgoode41/go-webserver1-basic bash
+#sudo k3s agent --server https://${Server_Addr}:6443 --token ${k3sToken}z

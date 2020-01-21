@@ -18,7 +18,7 @@ data:
       - 192.168.1.170/32
       - 192.168.1.247/32
 ---
-apiVersion: apps/v1beta2
+apiVersion: v1
 kind: Deployment
 metadata:
   name: go-webserver1
