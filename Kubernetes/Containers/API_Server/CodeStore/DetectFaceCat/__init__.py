@@ -45,8 +45,8 @@ def DetectFace_Cat(projectDir):
     }
 
 
-    while True:
-        time.sleep(1)
+    for _ in range(100):
+        #time.sleep(1)
         print('loop')
         ret, img =cam.read()
         img = cv2.flip(img, 1) # Flip vertically
@@ -66,11 +66,11 @@ def DetectFace_Cat(projectDir):
             #Looks for a specific person
             # Check if confidence is less them 100 ==> "0" is perfect match 
             if (confidence > 40):
-                print('person')
+                print('Cat')
                 id = names[id]
                 confidence = "  {0}%".format(round(100 - confidence))
-                PumpControl.Run_Pump(pumpDefaultData)
-                time.sleep(15)
+                #PumpControl.Run_Pump(pumpDefaultData)
+                #time.sleep(15)
             
             else:
                 id = "unknown"
@@ -78,7 +78,8 @@ def DetectFace_Cat(projectDir):
                 confidence = "  {0}%".format(round(100 - confidence))
         
             cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
-            cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)  
+            cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
+            PumpControl.Run_Pump(pumpDefaultData)  
                 
         #cv2.imshow('camera',img) 
         

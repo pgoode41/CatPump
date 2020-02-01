@@ -28,7 +28,7 @@ def hello():
     return render_template('ImageUpload.html')
 #####################################################################################
 #####################################################################################
-@app.route('/api/v1/data/upload', methods=['GET', 'POST'])
+@app.route('/api/v1/data/upload/', methods=['GET', 'POST'])
 def Model_Save():
     try:
         os.remove('./dataset/.gitKeep')
@@ -51,28 +51,34 @@ def Model_Save():
     }
     print("Priming Pump")
     PumpControl.Run_Pump(pumpPrimeData)
-    #PumpControl.Run_Pump(pumpPrimeData)
-    #PumpControl.Run_Pump(pumpPrimeData)
     print('Pump has been primed.')
 
     MakeDatasetCat.MakeDataset_Cat(projectDir)
     TrainFaceCat.TrainModle_Cat(projectDir)
-    #DetectFaceCat.DetectFace_Cat(projectDir)
-
     return "Facial Upload Completed."
 #####################################################################################
 #####################################################################################
-@app.route('/api/v1/pump', methods=['GET', 'POST'])
+@app.route('/api/v1/pump/start/', methods=['GET', 'POST'])
 def RunPump():
-    #PumpControl()
     reqDict = request.form.to_dict()
     pprint(reqDict)
-    #reqDict = json.loads(req)
+    PumpControl.Run_Pump(reqDict)
+    return "Pump Start Endpoint Hit."
+#####################################################################################
+#####################################################################################
+@app.route('/api/v1/detect/', methods=['GET', 'POST'])
+def StartDetect():
+    reqDict = request.form.to_dict()
+    pprint(reqDict)
     return PumpControl.Run_Pump(reqDict)
 #####################################################################################
 #####################################################################################
-
-
+@app.route('/api/v1/pump/stop/', methods=['GET', 'POST'])
+def StopPump():
+    reqDict = request.form.to_dict()
+    pprint(reqDict)
+    PumpControl.StopPump(reqDict)
+    return "Pump ShutDown Endpoint Hit."
 #############################################################
 #####################################################################################
 if __name__ == '__main__':

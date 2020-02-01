@@ -19,7 +19,7 @@ for x  in range(300):
 '''
 sampleData = {
     "gpio_pin_number": 21,
-    "pump_run_duration": 3,
+    "pump_run_duration": 5,
 }
 req = requests.request('POST', url, data=sampleData)
 #export CATPUMPDIR='/opt/CatPump/'

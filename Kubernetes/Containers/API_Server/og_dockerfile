@@ -12,7 +12,6 @@ RUN apt install python3-pip -y
 RUN apt install wget -y
 RUN apt install unzip -y
 RUN apt install nano -y
-RUN apt install golang-go -y
 RUN pip3 install --upgrade pip
 RUN pip3 install numpy
 RUN pip3 install Flask

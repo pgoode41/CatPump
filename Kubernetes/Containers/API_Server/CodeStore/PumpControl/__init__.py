@@ -47,7 +47,27 @@ def Run_Pump(dataDict):
         GPIO.cleanup()
 
     return returnString
+##########################################################################
+##########################################################################
+def Stop_Pump(dataDict):
+    gpioPin = int(dataDict['gpio_pin_number'])
+    pumpDuration = int(dataDict['pump_run_duration'])
+    GPIO.setmode(GPIO.BOARD)
+
+    GPIO.setup(gpioPin, GPIO.OUT)
     
+    GPIO.setwarnings(False)
+
+    GPIO.output(gpioPin, GPIO.LOW)
+
+    s = 'Pump Shutdown from API'
+    #GPIO Cleanup
+    GPIO.cleanup()
+
+    return returnString
+
+
+
 ##########################################################################
 ##########################################################################
 '''
