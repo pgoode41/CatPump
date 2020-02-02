@@ -4,18 +4,18 @@ kind: Namespace
 metadata:
   name: catpump-ai-detector
 ---
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  namespace: catpump-ai-detector
-#  name: config
-#data:
-##  config: |
-#    address-pools:
-#    - name: my-ip-space
-#      protocol: layer2
-#      addresses:
-#      - 192.168.1.46/32
+apiVersion: v1
+kind: ConfigMap
+metadata:
+
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: my-ip-space
+      protocol: layer2
+      addresses:
+      - 192.168.1.46/32
 
 ---
 apiVersion: apps/v1
@@ -34,6 +34,7 @@ spec:
     spec:
       containers:
       - name: catpump-ai-detector
+        imagePullPolicy: Always
         image: pgoode41/catpump-ai-detector
         ports:
         - name: http

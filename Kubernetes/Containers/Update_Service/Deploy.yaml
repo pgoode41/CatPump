@@ -2,12 +2,11 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: go-webserver1
+  name: catpump-update-service
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: go-webserver1
   name: config
 data:
   config: |
@@ -15,44 +14,43 @@ data:
     - name: my-ip-space
       protocol: layer2
       addresses:
-      - 192.168.1.170/32
-      - 192.168.1.247/32
+      - 192.168.1.46/32
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-webserver1
-  namespace: go-webserver1
+  name: catpump-update-service
+  namespace: catpump-update-service
 spec:
   selector:
     matchLabels:
-      app: go-webserver1
+      app: catpump-update-service
   template:
     metadata:
       labels:
-        app: go-webserver1
+        app: catpump-update-service
     spec:
       containers:
-      - name: go-webserver1
-        image: pgoode41/go-webserver1-basic
+      - name: catpump-update-service
+        image: pgoode41/catpump-update-service
         ports:
         - name: http
-          containerPort: 80
+          containerPort: 8075
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-webserver1
-  namespace: go-webserver1
+  name: catpump-update-service
+  namespace: catpump-update-service
 spec:
   ports:
   - name: http
-    port: 80
+    port: 8075
     protocol: TCP
-    targetPort: 80
+    targetPort: 8075
   selector:
-    app: go-webserver1
+    app: catpump-update-service
   type: LoadBalancer
 
 
@@ -60,9 +58,9 @@ spec:
 
 
 
+#sudo docker build Update_Service/ -t pgoode41/catpump-update-service && sudo docker push pgoode41/catpump-update-service && sudo docker pull pgoode41/catpump-update-service 
 
 
 
 
-
-#sudo docker run -ti --rm -p 80:80 pgoode41/go-webserver1-basic bash
+#sudo docker run -ti --rm -p 80:80 pgoode41/catpump-update-service-basic bash
