@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: catpump-ai-detector
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: my-ip-space
+      protocol: layer2
+      addresses:
+      - 192.168.1.46/32
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catpump-ai-detector
+  namespace: catpump-ai-detector
+spec:
+  selector:
+    matchLabels:
+      app: catpump-ai-detector
+  template:
+    metadata:
+      labels:
+        app: catpump-ai-detector
+    spec:
+      containers:
+      - name: catpump-ai-detector
+        imagePullPolicy: Always
+        image: pgoode41/catpump-ai-detector
+        ports:
+        - name: http
+          containerPort: 8095
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catpump-ai-detector
+  namespace: catpump-ai-detector
+spec:
+  ports:
+  - name: http
+    port: 8095
+    protocol: TCP
+    targetPort: 8095
+  selector:
+    app: catpump-ai-detector
+  type: LoadBalancer
+
+

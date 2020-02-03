@@ -9,7 +9,7 @@ import PumpControl
   
 pumpRunData = {
     "gpio_pin_number": 21,
-    "pump_run_duration": 15,
+    "pump_run_duration": 10,
 }
 
 
@@ -44,10 +44,11 @@ def DetectFace_Cat(projectDir):
         "pump_run_duration": 10
     }
 
-
+    count = 0
     for _ in range(100):
         #time.sleep(1)
-        print('loop')
+        print("Detection Cycle Started")
+        print('loop '+str(count))
         ret, img =cam.read()
         img = cv2.flip(img, 1) # Flip vertically
         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -79,8 +80,9 @@ def DetectFace_Cat(projectDir):
         
             cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
             cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
-            PumpControl.Run_Pump(pumpDefaultData)  
-                
+            PumpControl.Run_Pump(pumpDefaultData)
+            count+=1  
+        print("Detection Cycle Completed")
         #cv2.imshow('camera',img) 
         
         #k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
