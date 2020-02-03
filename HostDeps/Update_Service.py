@@ -14,8 +14,7 @@ from flask import render_template
 
 app = Flask(__name__)
 
-projectDir = os.environ.get('CATPUMPDIR')
-os.chdir(projectDir)
+
 #####################################################################################
 #####################################################################################
 @app.route('/api/v1/updates', methods=['GET', 'POST'])

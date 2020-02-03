@@ -7,3 +7,5 @@ chmod 600 /swapfile
 mkswap /swapfile 
 swapon /swapfile
 echo >> /swapfile none swap 0 0
+
+
