@@ -89,7 +89,7 @@ function Jetson_Full_Power {
 function Kube_Services_Create {
     cp /etc/rancher/k3s/k3s.yaml ~
     export KUBECONFIG='/etc/rancher/k3s/k3s.yaml'
-    kubectl apply -f Deploy.yaml
+    kubectl apply -f ${1}/Deploy.yaml
 }
 #################################################################################################
 #################################################################################################
@@ -99,4 +99,4 @@ Create_Service "Jeston_SwapSpace" "/home/preston/catpump/HostDeps/swapspace.sh"
 Flask_Service_Config "/home/preston/catpump/HostDeps/Update_Service.py"
 Catpump_Api_Service_Create
 Jetson_Full_Power
-Kube_Services_Create
+Kube_Services_Create "/home/preston/catpump/HostDeps"

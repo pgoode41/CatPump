@@ -51,6 +51,11 @@ echo "This script will move partitions p2..p14 to the end of /dev/mmcblk0 device
 size="$(cat /sys/block/mmcblk0/mmcblk0p1/size)"
 echo "Current size of root file system is $(($size*512/1000/1000/1000))G"
 
+if [[ $(($end_sector*512/1000/1000/1000)) == $(($size*512/1000/1000/1000)) ]];then
+    echo  "SD-card is the correct size."
+    echo "Exiting Resize"
+    exit 0
+fi
 # Move backup GPT header to end of disk
 sgdisk --move-second-header /dev/mmcblk0
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-depsDir='/home/preston/CatPump/HostDeps'
+depsDir='/home/preston/catpump/HostDeps'
 
-
+apt upgrade -y 
 apt install python3-pip -y
 apt install nano -y
 apt install curl -y
