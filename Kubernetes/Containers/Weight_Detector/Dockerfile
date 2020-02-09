@@ -16,6 +16,7 @@ RUN pip3 install Flask
 RUN pip3 install requests
 RUN pip3 install timeout-decorator
 RUN pip3 install Jetson.GPIO
+RUN pip3 install pyserial
 
 
 
