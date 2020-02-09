@@ -1,0 +1,21 @@
+#include <Q2HX711.h>
+//const  int kg_2.3 = 92699.10;
+const float kg_1 = 40303.92;
+const byte hx711_data_pin = 12;
+const byte hx711_clock_pin = 13;
+
+Q2HX711 hx711(hx711_data_pin, hx711_clock_pin);
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  const float raw = hx711.read()/100.0;
+  const float kilo_Convert = raw / kg_1;
+  Serial.println(raw);
+  Serial.println(kilo_Convert);
+  Serial.println(hx711.read()/100.0);
+  delay(500);
+}

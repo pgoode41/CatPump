@@ -1,0 +1,69 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: catpump-weight-detector
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: my-ip-space
+      protocol: layer2
+      addresses:
+      - 192.168.1.46/32
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catpump-weight-detector
+  namespace: catpump-weight-detector
+spec:
+  selector:
+    matchLabels:
+      app: catpump-weight-detector
+  template:
+    metadata:
+      labels:
+        app: catpump-weight-detector
+    spec:
+      containers:
+      - name: catpump-weight-detector
+        imagePullPolicy: Always
+        image: pgoode41/catpump-weight-detector
+        ports:
+        - name: http
+          containerPort: 8055
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catpump-weight-detector
+  namespace: catpump-weight-detector
+spec:
+  ports:
+  - name: http
+    port: 8055
+    protocol: TCP
+    targetPort: 8055
+  selector:
+    app: catpump-weight-detector
+  type: LoadBalancer
+
+
+
+
+
+
+
+
+
+
+
+#sudo docker build Weight_Detector/ -t pgoode41/catpump-weight-detector && sudo docker push pgoode41/catpump-weight-detector && sudo docker pull pgoode41/catpump-weight-detector

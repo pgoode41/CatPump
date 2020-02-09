@@ -3,7 +3,7 @@ import json
 import glob
 import base64
 import requests
-
+import Weight_Sensor
 from flask import Flask
 from flask import request
 from pprint import pprint
@@ -16,7 +16,7 @@ projectDir = os.environ.get('CATPUMPDIR')
 os.chdir(projectDir)
 #####################################################################################
 #####################################################################################
-@app.route('/api/v1/motion/detect/start/', methods=['GET', 'POST'])
+@app.route('/api/v1/weight/detect/start/', methods=['GET', 'POST'])
 def RunPump():
     print("Facial Detection Activated!!!")
     url = "http://192.168.1.46"
@@ -31,9 +31,10 @@ def RunPump():
 #####################################################################################
 @app.route('/', methods=['GET', 'POST'])
 def root():
-    print("root ai_detector hit")
-    return "root ai_detector return"
+    print("root weight_detector hit")
+    Weight_Sensor.Weight_Test()
+    return "root weight_detector return"
 #############################################################
 #####################################################################################
 if __name__ == '__main__':
-    app.run('0.0.0.0', "8095", debug=True)
+    app.run('0.0.0.0', "8055", debug=True)
