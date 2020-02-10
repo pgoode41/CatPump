@@ -64,6 +64,6 @@ spec:
 
 
 
+#sudo docker build Ai_Detector -t pgoode41/catpump-ai-detector && sudo docker push pgoode41/catpump-ai-detector && sudo docker pull pgoode41/catpump-ai-detector
 
-
-#sudo docker run -ti --rm -p 80:80 pgoode41/catpump-ai-detector-basic bash
+#sudo docker run -ti --rm -p 8095:8095 --privileged pgoode41/catpump-ai-detector bash

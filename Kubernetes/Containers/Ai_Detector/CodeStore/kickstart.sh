@@ -2,4 +2,4 @@
 
 cd ${CATPUMPDIR}
 
-python3 apiServer.py
+python3 /opt/CatPump/Motion_Sensor/__init__.py
