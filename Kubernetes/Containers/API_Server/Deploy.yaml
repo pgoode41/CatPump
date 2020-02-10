@@ -75,6 +75,6 @@ spec:
 
 #sudo docker build API_Server -t pgoode41/catpump-api && sudo docker push pgoode41/catpump-api && sudo docker pull pgoode41/catpump-api
 
-#sudo docker run -ti --rm -p 8095:8095 --privileged pgoode41/catpump-api bash
+#sudo docker run -ti --rm -p 8085:8085 --privileged pgoode41/catpump-api bash
 
 

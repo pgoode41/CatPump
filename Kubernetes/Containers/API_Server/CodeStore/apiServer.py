@@ -68,9 +68,11 @@ def RunPump():
 #####################################################################################
 @app.route('/api/v1/detect/', methods=['GET', 'POST'])
 def StartDetect():
-    reqDict = request.form.to_dict()
-    pprint(reqDict)
-    return PumpControl.Run_Pump(reqDict)
+    #reqDict = request.form.to_dict()
+    #pprint(reqDict)
+    #DetectFaceCat. #(projectDir)
+    DetectFaceCat.DetectFace_Cat(projectDir)
+    return pprint('hit /api/v1/detect/')
 #####################################################################################
 #####################################################################################
 @app.route('/api/v1/pump/stop/', methods=['GET', 'POST'])

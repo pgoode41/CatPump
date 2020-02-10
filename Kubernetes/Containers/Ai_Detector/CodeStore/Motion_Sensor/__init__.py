@@ -13,9 +13,9 @@ def MOTION(PIR_PIN):
                 url = "http://192.168.1.46"
                 port = ":8085"
                 endpoint = '/api/v1/detect/'
-                reqDict = request.form.to_dict()
-                pprint(reqDict)
-                req = requests.request("POST", url+port+endpoint, data=reqDict)
+                #reqDict = request.form.to_dict()
+                #pprint(reqDict)
+                req = requests.request("GET", url+port+endpoint)
                 print(req.text)
                 print("Facial Detection De-activated!!!")
 
