@@ -66,23 +66,38 @@ def DetectFace_Cat(projectDir):
             id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
             #Looks for a specific person
             # Check if confidence is less them 100 ==> "0" is perfect match 
-            if (confidence > 40):
+            print("ID: "+str(id))
+            print("Confidence Num: "+str(confidence))
+            confidence = round(100 - confidence)
+            confidence = confidence * -1
+
+            print("Conf:"+str(confidence))
+            if (confidence > 60):
                 print('Cat')
                 id = names[id]
-                confidence = "  {0}%".format(round(100 - confidence))
+                confidenceP = "  {0}%".format(confidence)
+                print("confidence percentage: ")
+                print(confidenceP)
                 #PumpControl.Run_Pump(pumpDefaultData)
+                #break
                 #time.sleep(15)
             
             else:
                 id = "unknown"
                 print(id)
-                confidence = "  {0}%".format(round(100 - confidence))
+                confidenceP = "  {0}%".format(confidence)
+                print(confidenceP)
         
             cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
             cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
-            PumpControl.Run_Pump(pumpDefaultData)
+            if confidence > 60:
+                PumpControl.Run_Pump(pumpDefaultData)
+                return("Exit Detect!")
+                break
             count+=1  
+        #PumpControl.Run_Pump(pumpDefaultData)
         print("Detection Cycle Completed")
+    return("Exit Detect!")
         #cv2.imshow('camera',img) 
         
         #k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
