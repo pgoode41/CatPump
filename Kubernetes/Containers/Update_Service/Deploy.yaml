@@ -63,4 +63,4 @@ spec:
 
 
 
-#sudo docker run -ti --rm -p 80:80 pgoode41/catpump-update-service-basic bash
+#sudo docker run -ti --rm -p 80:80 pgoode41/catpump-update-service bash

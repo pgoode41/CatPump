@@ -12,6 +12,8 @@ RUN apt install python3-pip -y
 RUN apt install wget -y
 RUN apt install unzip -y
 RUN apt install nano -y
+RUN apt update -y
+RUN apt install ansible -y
 RUN pip3 install Flask
 RUN pip3 install requests
 RUN pip3 install Jetson.GPIO

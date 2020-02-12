@@ -1,0 +1,13 @@
+---
+- name: Xenserver KubeCluster VM Create Playbook
+  hosts: host
+
+  tasks:
+    - name: task1
+      debug:
+        msg: "What up dawg???"
+
+    - name: Create file
+      command: touch /home/preston/testfromans.txt
+      args:
+        creates: /home/preston/testfromans.txt

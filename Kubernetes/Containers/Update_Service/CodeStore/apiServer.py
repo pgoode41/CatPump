@@ -4,6 +4,7 @@ import json
 import glob
 import base64
 import requests
+import HostConfig
 from flask import Flask
 from flask import request
 from pprint import pprint
@@ -35,9 +36,10 @@ def UpdateDevice():
 @app.route('/', methods=['GET', 'POST'])
 def root():
     print("root update_service hit")
+    HostConfig.TestPlay()
     return "root update_service hit"
 
 #############################################################
 #####################################################################################
 if __name__ == '__main__':
-    app.run('0.0.0.0', "8075", debug=True)
+    app.run('0.0.0.0', "8076", debug=True)
