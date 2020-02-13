@@ -28,9 +28,15 @@ class CatPump_MotionSensor:
 ###########################################################################
 ###########################################################################
 class CatPump_WeightSensor:
-
-    def GetWeight(self):
+    def __init__(self):
+        print("in init")
+    def GetWeight():
         print("Calling to CatPump_WeightSensor Micro-Service")
+        url = "http://192.168.1.46"
+        port = ":8055"
+        endpoint = "/api/v1/weight/detect/start/single"
+        req = requests.request("GET", url+port+endpoint)
+        print(req.text)
 ###########################################################################
 ###########################################################################
 class CatPump_Updater:
@@ -41,3 +47,4 @@ class CatPump_Updater:
 ###########################################################################
 
 CatPump_Api.StartPump()
+CatPump_WeightSensor.GetWeight()
