@@ -76,4 +76,4 @@ sampleData = {
 Run_Pump(sampleData)
 '''
 time.sleep(5)
-Stop_Pump()
+Stop_Pump(sampleData)

@@ -1,15 +1,9 @@
-#!/usr/bin/env python3
-#!/usr/bin/python3
-
-
-
-#!/usr/bin/python3
-
-
-
 import serial
-
 import time
+
+#port level = ~750 ml
+#empty res level = 1000ml
+
 
 
 
@@ -46,8 +40,9 @@ def Percentage(full_connected, empty_connected):
 
 def Weight_Test_Loop():
     empty_disconnected = 0.76
-    empty_connected = 1.12
-    full_connected = 4.25
+    #empty_connected = 1.12
+    empty_connected = 0.74
+    full_connected = 3.0
     ser = serial.Serial('/dev/ttyACM0', 9600)
     count = 0
     while count < 10: 
@@ -97,8 +92,9 @@ def Weight_Test_Loop():
 
 def Weight_Test_Single():
     empty_disconnected = 0.76
-    empty_connected = 1.12
-    full_connected = 4.25
+    #empty_connected = 1.12
+    empty_connected = 0.74
+    full_connected = 3.0
     ser = serial.Serial('/dev/ttyACM0', 9600)
     while 1: 
         if(ser.in_waiting >0):

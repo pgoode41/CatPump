@@ -15,7 +15,7 @@ class CatPump_Api:
         endpoint = "/api/v1/pump/start/"
         data = {
             "gpio_pin_number": 21,
-            "pump_run_duration": 5
+            "pump_run_duration": 10
         }
         req = requests.request("POST", url+port+endpoint, data=data)
         print(req.text)
