@@ -95,7 +95,7 @@ function Kube_Services_Create {
 #################################################################################################
 
 
-Create_Service "Start_All_Containers" "/home/preston/catpump/HostDeps/Start_All_Containers.sh"
+#Create_Service "Start_All_Containers" "/home/preston/catpump/HostDeps/Start_All_Containers.sh"
 Create_Service "Jeston_SwapSpace" "/home/preston/catpump/HostDeps/swapspace.sh"
 Create_Service "pump_boot_actions" "/usr/bin/python3 /home/preston/catpump/HostDeps/pump_boot_actions.py"
 Create_Service "jetson_full_power" "/home/preston/catpump/HostDeps/jetson_full_power.sh"
