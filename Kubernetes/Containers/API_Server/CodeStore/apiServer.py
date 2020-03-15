@@ -79,7 +79,7 @@ def StartDetect():
 def StopPump():
     reqDict = request.form.to_dict()
     pprint(reqDict)
-    PumpControl.StopPump(reqDict)
+    PumpControl.Stop_Pump(reqDict)
     return "Pump ShutDown Endpoint Hit."
 #############################################################
 #####################################################################################
